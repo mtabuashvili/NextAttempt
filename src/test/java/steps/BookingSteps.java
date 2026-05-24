@@ -38,4 +38,12 @@ public class BookingSteps {
                 .when()
                 .patch("https://restful-booker.herokuapp.com/booking/{id}");
     }
+    @Step("ჯავშნის წაშლა ID-ით: {bookingId}")
+    public Response deleteBooking(int bookingId, String token) {
+        return given()
+                .header("Cookie", "token=" + token)
+                .pathParam("id", bookingId)
+                .when()
+                .delete("https://restful-booker.herokuapp.com/booking/{id}");
+    }
 }

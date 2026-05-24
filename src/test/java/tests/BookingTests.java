@@ -70,4 +70,24 @@ public class BookingTests extends BaseTest {
         bookingSteps.getBooking(bookingId).then().statusCode(200)
                 .body("additionalneeds", equalTo("Breakfast, Lunch, Room cleaning service"));
     }
+    @Test(priority = 2, dependsOnMethods = "testCreateAndModifyBooking", groups = {"regression"})
+    @Story("ჯავშნის წაშლა")
+    @Description("ეს ტესტი ამოწმებს ჯავშნის წარმატებულ წაშლას (DELETE) და შემდეგ ამოწმებს, რომ ჯავშანი აღარ არსებობს (404).")
+    public void testDeleteBooking() {
+        Response deleteResponse = bookingSteps.deleteBooking(bookingId, token);
+        deleteResponse.then().statusCode(201);
+
+        Response getResponse = bookingSteps.getBooking(bookingId);
+        getResponse.then().statusCode(404);
+    }
+
+    @Test(priority = 3, groups = {"regression"})
+    @Story("ნეგატიური სცენარები")
+    @Description("ეს ტესტი ამოწმებს სისტემის რეაგირებას არასწორი/არარსებული ჯავშნის ID-ის მოთხოვნისას.")
+    public void testGetNonExistingBookingNegative() {
+        int fakeBookingId = 999999;
+
+        Response getResponse = bookingSteps.getBooking(fakeBookingId);
+        getResponse.then().statusCode(404);
+    }
 }
