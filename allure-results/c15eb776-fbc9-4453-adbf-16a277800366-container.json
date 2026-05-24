@@ -1,0 +1,1 @@
+{"uuid":"c15eb776-fbc9-4453-adbf-16a277800366","name":"Restful Booker Suite","children":["4a054e18-3676-419a-a1ce-dc7f6f879053"],"befores":[{"name":"setupSuite","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1779622292186,"stop":1779622293399}],"afters":[],"start":1779622292143,"stop":1779622311893}
